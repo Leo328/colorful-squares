@@ -1,19 +1,35 @@
 import React, { Component } from "react";
 import "./SquareContainer.css";
+import { choice } from "./helpers";
 
 class SquareContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: [this.props.allColors[0]] // this should be an array of 24 random colors,
+      colors: Array.from({ length: 24 }, () => choice(this.props.allColors))
+
+      // ewww
+      // colors: Array.from({ length: 24 }).map(function() {
+      //   return choice(this.props.allColors);
+      // }, this)
     };
+  }
+
+  handleClick(idx) {
+    console.log(`I AM A SQUARE AT INDEX ${idx}`);
   }
 
   render() {
     let squares = this.state.colors.map((color, i) => (
       <div
         key={i}
-        style={{ width: "200px", height: "200px", backgroundColor: color }}
+        style={{
+          width: "100px",
+          height: "100px",
+          backgroundColor: color,
+          display: "inline-block"
+        }}
+        onClick={this.handleClick.bind(this, i)}
       />
     ));
     return (
