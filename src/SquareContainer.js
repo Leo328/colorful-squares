@@ -16,7 +16,11 @@ class SquareContainer extends Component {
   }
 
   handleClick(idx) {
-    console.log(`I AM A SQUARE AT INDEX ${idx}`);
+    this.setState(prevState => {
+      let newColors = [...prevState.colors];
+      newColors[idx] = choice(this.props.allColors);
+      return { colors: newColors };
+    });
   }
 
   render() {
