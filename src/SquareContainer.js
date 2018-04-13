@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./SquareContainer.css";
+import Square from "./Square";
 import { choice } from "./helpers";
 
 class SquareContainer extends Component {
@@ -25,15 +26,10 @@ class SquareContainer extends Component {
 
   render() {
     let squares = this.state.colors.map((color, i) => (
-      <div
+      <Square
         key={i}
-        style={{
-          width: "100px",
-          height: "100px",
-          backgroundColor: color,
-          display: "inline-block"
-        }}
-        onClick={this.handleClick.bind(this, i)}
+        color={color}
+        handleClick={this.handleClick.bind(this, i)}
       />
     ));
     return (
